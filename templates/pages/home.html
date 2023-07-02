@@ -10,11 +10,11 @@
   <h1>Home Page</h1>
   {% if user.is_authenticated %}
     <p>Hi {{user.email}}</p>
-    <p><a href="{% url 'logout' %}">logout</a></p>
+    <p><a href="{% url 'account_logout' %}">logout</a></p>
     <p><img class="bookcover" src="{% static 'image/book_img.jpg' %}" alt=""></p>
     {% else %}
     <p>You are not logged in</p>
-    <p> <a href="{% url 'login' %}">log in</a></p>
-    <p><a href="{% url 'signup' %}">Sign Up</a></p>
+    <p> <a href="{% url 'account_login' %}">log in</a></p>
+    <p><a href="{% url 'account_signup' %}">Sign Up</a></p>
   {% endif %}
 {% endblock content %}
