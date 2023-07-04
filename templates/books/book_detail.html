@@ -11,4 +11,15 @@
     <p>Aurhor: {{book.price}}</p>
     <p>Price: {{book.content}}</p>
 </div>
+<div>
+    <h1>Comments:</h1>
+    {% for cm in book.comments.all %}
+    <ul>
+    <h6>{{cm.author}}</h6>
+    <li>{{cm.comment}}</li>
+    <hr>
+    
+</ul>
+    {% endfor %}
+</div>
 {% endblock content %}
