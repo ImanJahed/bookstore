@@ -45,6 +45,10 @@
             </li>
             {% endif %}
           </ul>
+          <form action="{% url 'search_result' %}" class="d-flex">
+            <input type="search" name="q" class="form-control me-2" placeholder="Search" aria-label="Search" id="">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
         </div>
       </div>
 

@@ -1,7 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-
+from django.db.models import Q
 from .models import Book
 
 # Create your views here.
@@ -39,3 +40,15 @@ class BookDeleteView(DeleteView):
     model = Book
     template_name = 'books/book_delete.html'
     success_url = reverse_lazy('book-list')
+    
+    
+class SearchListView(ListView):
+    model = Book
+    template_name = 'books/search_result.html'
+
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+
+        return Book.objects.filter(Q(title__icontains=query) | Q(author__username__icontains=query)) 
+
+

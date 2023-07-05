@@ -9,4 +9,5 @@ urlpatterns = [
     path('add', views.BookCreateView.as_view(), name='book-add'),
     path('<uuid:pk>/edit', views.BookUpdateView.as_view(), name='book-edit'),
     path('<uuid:pk>/delete', views.BookDeleteView.as_view(), name='book-delete'),
+    path('search', views.SearchListView.as_view(), name='search_result'),
 ]
