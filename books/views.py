@@ -1,22 +1,23 @@
-from urllib import request
-from django.forms.models import BaseModelForm
-from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, UpdateView, CreateView, DeleteView
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 
 from .models import Book
 
 # Create your views here.
-class BookListView(ListView):
+class BookListView(LoginRequiredMixin, ListView):
     model = Book
     template_name = 'books/book_list.html'
+    login_url = 'account_login'
     
     
     
-class BookDetailView(DetailView):
+class BookDetailView(LoginRequiredMixin, PermissionRequiredMixin,DetailView):
     model = Book
     template_name = 'books/book_detail.html'
-
+    login_url = 'account_login'
+    permission_required = 'books.Special_status'
+    
 
 class BookUpdateView(UpdateView):
     model = Book

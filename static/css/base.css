@@ -11,3 +11,8 @@ h1 {
     width: auto;
 
 }
+
+img.img_detail{
+    height: 100px;
+    width: 100px;
+}

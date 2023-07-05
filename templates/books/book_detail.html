@@ -1,11 +1,16 @@
 {% extends '_base.html' %}
-
+{% load static %}
 {% block title %}
 {{book.title}}
 {% endblock title %}
 
 {% block content %}
 <div>
+    {% if book.cover %}
+    <img src="{{book.cover.url}}" alt="">
+    {% else %}
+    <img src="{% static 'image/no_image.webp' %}" width="auto" height="300px" class="img_detail" alt="">
+    {% endif %}
     <h2><a href="">{{book.title}}</a></h2>
     <p>{{book.author}}</p>
     <p>Aurhor: {{book.price}}</p>
