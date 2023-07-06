@@ -18,6 +18,7 @@ class BookDetailView(LoginRequiredMixin, PermissionRequiredMixin,DetailView):
     template_name = 'books/book_detail.html'
     login_url = 'account_login'
     permission_required = 'books.Special_status'
+    queryset = Book.objects.all().prefetch_related('comments__author')
     
 
 class BookUpdateView(UpdateView):

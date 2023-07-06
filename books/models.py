@@ -19,6 +19,7 @@ class Book(models.Model):
     updated_date = models.DateTimeField(auto_now=True)
     
     class Meta:
+        indexes = models.Index(fields=['id'], name='id_index'),
         permissions = [
             ('Special_status', 'Can read all books')
         ]
