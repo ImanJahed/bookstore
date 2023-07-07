@@ -20,7 +20,7 @@ from django.conf import settings
 
 urlpatterns = [
     # admin
-    path('admin/', admin.site.urls),
+    path('admin-is-watching/', admin.site.urls),
     # User Management
     path('accounts/', include('allauth.urls')),
     # Local apps

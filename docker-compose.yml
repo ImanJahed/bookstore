@@ -14,6 +14,12 @@ services:
       - SECRET_KEY=test
       - DEBUG=True
       - ALLOWED_HOSTS=*
+      - SECURE_SSL_REDIRECT=False
+      - SECURE_HSTS_SECONDS=0
+      - SECURE_HSTS_INCULDE_SUBDOMAINS=False
+      - SECURE_HSTS_PRELOAD=False
+      - SESSION_COOKIE_SECURE=False
+      - CSRF_COOKIE_SECURE=False
     depends_on:
       - db
 

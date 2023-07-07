@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 
+from ctypes import cast
+from email.policy import default
 from pathlib import Path
 from decouple import config
 import socket
@@ -25,12 +27,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", cast=bool)
+DEBUG = config("DEBUG", cast=bool, default=False)
 
-ALLOWED_HOSTS = config(
-    "ALLOWED_HOSTS", cast=lambda v: [s.strip() for s in v.split(",")]
-)
-
+# ALLOWED_HOSTS = config(
+#     "ALLOWED_HOSTS", cast=lambda v: [s.strip() for s in v.split(",")]
+# )
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '*']
 
 # Application definition
 
@@ -203,3 +205,13 @@ DEFAULT_FROM_EMAIL = 'admin@bookstore.com'
 
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 INTERNAL_IPS = [ip[:-1] + '1' for ip in ips]
+
+
+SECURE_SSL_REDIRECT = config("SECURE_SSL_REDIRECT", cast=bool, default=True)
+
+SECURE_HSTS_SECONDS = config('SECURE_HSTS_SECONDES', cast=int, default=2592000)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = config('SECURE_HSTS_INCLUDE_SUBDOMAINS',cast=bool, default=True)
+SECURE_HSTS_PRELOAD = config('SECURE_HSTS_PRELOAD', cast=bool ,default=True)
+
+SESSION_COOKIE_SECURE = config('SESSION_COOKIE_SECURE', cast=bool, default=True)
+CSRF_COOKIE_SECURE = config('CSRF_COOKIE_SECURE', cast=bool, default=True)
